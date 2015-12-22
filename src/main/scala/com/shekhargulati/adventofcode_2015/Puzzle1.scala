@@ -34,13 +34,13 @@ object Puzzle1 {
 
   def floorR(instructions: String): Int = {
     @tailrec
-    def floor(input: String, result: Int): Int = input.split("").toList match {
-      case "(" :: xs => floor(xs.mkString(""), result + 1)
-      case ")" :: xs => floor(xs.mkString(""), result - 1)
+    def floor(input: List[String], result: Int): Int = input match {
+      case "(" :: xs => floor(xs, result + 1)
+      case ")" :: xs => floor(xs, result - 1)
       case _ => result
     }
 
-    floor(instructions, 0)
+    floor(instructions.split("").toList, 0)
   }
 
 
